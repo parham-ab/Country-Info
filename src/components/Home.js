@@ -22,7 +22,7 @@ const Home = () => {
     GetData();
   }, []);
   // search country names
-  const searchCoins = data.filter(
+  const searchData = data.filter(
     (data) =>
       data.name.common.toLowerCase().includes(search.toLocaleLowerCase()) ||
       data.name.official.toLowerCase().includes(search.toLowerCase()) ||
@@ -42,7 +42,7 @@ const Home = () => {
       </div>
       <div className="d-flex flex-wrap align-item-center justify-content-center">
         {!loading ? (
-          searchCoins.map((item) => (
+          searchData.map((item) => (
             <CountryList key={item.name.common} info={item} />
           ))
         ) : (

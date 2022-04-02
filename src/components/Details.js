@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
-import Loading from "./Loading";
 import { Button } from "react-bootstrap";
+import axios from "axios";
+// components
+import Loading from "./Loading";
 // icons
 import { FcHome } from "react-icons/fc";
 import { BiMapPin } from "react-icons/bi";
