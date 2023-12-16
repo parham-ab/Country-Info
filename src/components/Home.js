@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 // components
 import CountryList from "./CountryList";
@@ -32,18 +32,16 @@ const Home = () => {
 
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       <div className="d-flex flex-wrap align-item-center justify-content-center">
         {!loading ? (
           searchData.map((item) => (
-            <CountryList key={item.name.common} info={item} />
+            <CountryList key={item.name.common} {...item} />
           ))
         ) : (
           <Loading />

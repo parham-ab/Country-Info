@@ -1,17 +1,16 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-const CountryList = ({ info }) => {
+const CountryList = ({ name, flags }) => {
   return (
     <div className="text-center main-data shadow-lg">
-      <Link to={`details/${info.name.common}`}>
+      <Link to={`details/${name?.common}`}>
         <img
-          src={info.flags.svg}
+          src={flags?.svg}
           className="img-fluid"
-          alt={info.name.common}
+          alt={name?.common}
           loading="lazy"
         />
-        <p className="fw-bold text-white mt-4">{info.name.common}</p>
+        <p className="fw-bold text-white mt-4">{name?.common}</p>
       </Link>
     </div>
   );
