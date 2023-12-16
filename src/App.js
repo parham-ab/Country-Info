@@ -1,17 +1,15 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 // components
-import Details from "./components/Details";
 import Home from "./components/Home";
+import Details from "./components/Details";
 
 const App = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/details/:id" element={<Details />} />
-        <Route path="/*" element={<Navigate to="/" />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/details/:id" element={<Details />} />
+      <Route path="/*" element={<Navigate to="/" />} />
+    </Routes>
   );
 };
 

@@ -1,26 +1,16 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 // components
 import CountryList from "./CountryList";
 import Loading from "./Loading";
+// hooks
+import useFetch from "../hooks/useFetch";
 
 const Home = () => {
-  const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(false);
-
+  const { data, isLoading, error, fetchData } = useFetch();
   useEffect(() => {
-    const GetData = async () => {
-      setLoading(true);
-      const BASE_URL = `https://restcountries.com/v3.1/all`;
-      const response = await axios
-        .get(`${BASE_URL}`)
-        .catch((error) => console.log("An Error Occured"));
-      setData(response.data);
-      setLoading(false);
-    };
-    GetData();
-  }, []);
+    fetchData("all");
+  }, [fetchData]);
   // search country names
   const searchData = data.filter(
     (data) =>
@@ -29,7 +19,12 @@ const Home = () => {
       data.cca2.toLowerCase().includes(search.toLowerCase()) ||
       data.cca3.toLowerCase().includes(search.toLowerCase())
   );
-
+  if (error)
+    return (
+      <h1 className="d-flex justify-content-center">
+        Something Went wrong {":("}
+      </h1>
+    );
   return (
     <div>
       <input
@@ -39,7 +34,7 @@ const Home = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       <div className="d-flex flex-wrap align-item-center justify-content-center">
-        {!loading ? (
+        {!isLoading ? (
           searchData.map((item) => (
             <CountryList key={item.name.common} {...item} />
           ))
